@@ -10,3 +10,4 @@ for development run these commands:
 
 ---------------------------
 Credits: Jonas Schmedtmann
+(Udemy instructor. Course: The Complete JavaScript Course 2020)
