@@ -3,9 +3,9 @@ A simple JavaScript project which is powered by food2fork API delivering great r
 
 
 for development run these commands:
-'npm install'
-'npm run dev'
-'npm run start'   // to start/open the application
+- 'npm install'
+- 'npm run dev'
+- 'npm run start'   // to start/open the application
 
 
 ---------------------------
