@@ -17,7 +17,7 @@ import * as likesView from './view/likesView';
  */
 const state = {};
 {
-    // window.state = state;
+    window.state = state;
     // state.likes = new Likes(); 
     // likesView.toggleLikeMenu(state.likes.totalLiked()); 
 } // testing purpose only
@@ -25,12 +25,15 @@ const state = {};
 window.addEventListener('load', e => {
     //initialize and read storage data for liked items (if any)
     state.likes = new Likes();
-    state.likes.readStorage();
+    state.likes = state.likes.readStorage();
 
     //render or show liked items to the liked list UI
-    state.likes.likes.forEach(like => likesView.renderLike(like));
-
-    likesView.toggleLikeMenu(state.likes.totalLiked()); 
+    if(state.likes){
+        state.likes.likes.forEach(like => likesView.renderLike(like));
+        likesView.toggleLikeMenu(state.likes.totalLiked()); 
+    } else {
+        likesView.toggleLikeMenu(false);
+    }
 });
 
 /**
@@ -97,7 +100,11 @@ const controlRecipe = async (event) => {
             // Render recipe to UI
             clearLoader();
             if(state.Search) searchView.highlightSelected(id);
-            recipeView.renderRecipe(state.recipe, state.likes.isLiked(id));
+            if(state.likes){
+                recipeView.renderRecipe(state.recipe, state.likes.isLiked(id));
+            } else{
+                recipeView.renderRecipe(state.recipe)
+            }
         } catch (error) {
             console.log('Error in controlRecipe: ' + error);
         } 
